@@ -1,4 +1,0 @@
-#Mon Feb 14 09:07:52 EST 2011
-module-start-timeout=300000
-runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="SpringSource tc Server (Runtime) v6.0" id-set\="true" location\="C\:/springsource/tc-server-6.0.20.C" name\="SpringSource tc Server (Runtime) v6.0" runtime-type-id\="com.springsource.tcserver.runtime.60" timestamp\="0"/>\r\n  <runtime id\="SpringSource Cloud Foundry (Runtime) v1.0" id-set\="true" name\="SpringSource Cloud Foundry (Runtime) v1.0" runtime-type-id\="com.springsource.cloudfoundryserver.runtime.10" timestamp\="0"/>\r\n</runtimes>\r\n
-eclipse.preferences.version=1

@@ -1,6 +1,0 @@
-package me.twammer.ui
-
-class ImageController {
-
-    def index = { }
-}

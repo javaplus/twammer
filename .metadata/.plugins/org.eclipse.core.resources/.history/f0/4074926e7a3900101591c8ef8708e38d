@@ -1,6 +1,0 @@
-package me.twammer.domain
-
-class ConversationController {
-	def scaffold = true
-    def index = { }
-}

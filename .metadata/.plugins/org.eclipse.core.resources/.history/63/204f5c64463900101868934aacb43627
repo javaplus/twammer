@@ -1,8 +1,0 @@
-package me.twammer.domain
-
-class TwamController {
-
-	scaffolding=true
-	
-    def index = { }
-}

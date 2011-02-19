@@ -1,7 +1,0 @@
-package me.twammer.domain
-
-class User {
-
-    static constraints = {
-    }
-}

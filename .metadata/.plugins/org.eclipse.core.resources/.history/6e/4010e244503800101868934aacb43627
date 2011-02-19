@@ -1,7 +1,0 @@
-package twammer
-
-class Twam {
-
-    static constraints = {
-    }
-}
