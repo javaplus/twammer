@@ -1,0 +1,12 @@
+package twammer
+
+class Twam {
+	
+	String message
+	String when
+	String from
+	
+
+    static constraints = {
+    }
+}

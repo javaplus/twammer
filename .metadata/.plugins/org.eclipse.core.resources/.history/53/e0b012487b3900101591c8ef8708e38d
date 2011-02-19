@@ -1,0 +1,6 @@
+package me.twammer.domain
+
+class UserController {
+
+    def index = { }
+}

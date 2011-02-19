@@ -1,0 +1,12 @@
+package me.twammer.domain
+
+class User {
+	
+	String userName
+	String password
+
+    static constraints = {
+		userName(nullable:false)
+		password(nullable:false)
+    }
+}

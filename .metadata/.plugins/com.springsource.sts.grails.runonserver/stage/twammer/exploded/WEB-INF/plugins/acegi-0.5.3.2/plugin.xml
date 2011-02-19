@@ -1,0 +1,31 @@
+<plugin name='acegi' version='0.5.3.2' grailsVersion='1.2.3 &gt; *'>
+  <author>Tsuyoshi Yamamoto</author>
+  <authorEmail>tyama@xmldo.jp</authorEmail>
+  <title>Grails Spring Security 2.0 Plugin</title>
+  <description>Plugin to use Grails domain class and secure your applications with Spring Security filters.</description>
+  <documentation>http://grails.org/plugin/acegi</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>DataSource</resource>
+    <resource>DefaultSecurityConfig</resource>
+    <resource>org.grails.plugins.springsecurity.controller.AuthBase</resource>
+    <resource>org.grails.plugins.springsecurity.service.AuthenticateService</resource>
+    <resource>org.grails.plugins.springsecurity.taglib.AuthorizeTagLib</resource>
+  </resources>
+  <dependencies>
+    <resolvers>
+      <resolver type='grailsPlugins' name='grailsPlugins' />
+    </resolvers>
+  </dependencies>
+  <behavior>
+    <method name='getProperty' artefact='Controller' type='DefaultSecurityConfig'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='invokeMethod' artefact='Controller' type='DefaultSecurityConfig'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.Object' />
+    </method>
+  </behavior>
+</plugin>

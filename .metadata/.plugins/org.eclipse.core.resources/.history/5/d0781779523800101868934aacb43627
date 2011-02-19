@@ -1,0 +1,23 @@
+package me.twammer.domain
+
+import grails.test.*
+
+class TwamIntegrationTests extends GroovyTestCase {
+    protected void setUp() {
+        super.setUp()
+    }
+
+    protected void tearDown() {
+        super.tearDown()
+    }
+
+    void testTwamSave() {
+		
+		def twam = new Twam(message:"My First Twam", from:"JimBob", when:"1 min ago")
+		// 
+		assertNotNull twam.save()
+		// make sure it doesn't have
+		assertNotNull twam.id		
+		
+    }
+}

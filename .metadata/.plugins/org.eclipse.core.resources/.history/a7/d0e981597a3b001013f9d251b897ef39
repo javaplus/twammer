@@ -1,0 +1,21 @@
+package me.twammer.domain
+
+import me.twammer.domain.DummyUser
+
+/**
+ * Authority domain class.
+ */
+class Role {
+
+	static hasMany = [people: DummyUser]
+
+	/** description */
+	String description
+	/** ROLE String */
+	String authority
+
+	static constraints = {
+		authority(blank: false, unique: true)
+		description()
+	}
+}

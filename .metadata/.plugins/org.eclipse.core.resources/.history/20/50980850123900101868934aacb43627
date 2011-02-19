@@ -1,0 +1,18 @@
+package me.twammer.domain
+
+/**
+ * A Conversation represents a series of {@link Twam}s
+ * 
+ * @author btarlton
+ *
+ */
+class Conversation {
+	
+	// conversation has a list of twams
+	java.util.List<Twam> twams 
+
+	static hasMany = [twams:Twam]
+    static constraints = {
+		
+    }
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="2" auto-publish-time="1" com.springsource.tcserver.asf="true" configuration-id="/Servers/SpringSource tc Server v6.0-config" deployDir="wtpwebapps" hostname="localhost" id="SpringSource tc Server v6.0" id-set="true" name="SpringSource tc Server v6.0" runtime-id="SpringSource tc Server (Runtime) v6.0" server-type="com.springsource.tcserver.60" server-type-id="com.springsource.tcserver.60" start-timeout="120" stop-timeout="15" testEnvironment="false" timestamp="1">
+    <list key="removeExtraVmArgs"/>
+    <list key="addExtraVmArgs" value0="-Dinsight.enabled=false"/>
+    <list key="modules" value0="twammer::com.springsource.sts.grails.runonserver.GrailsAppModuleFactory:twammer::grails.app::1.0"/>
+  </server>
+  <server hostname="localhost" id="SpringSource Cloud Foundry v1.0" id-set="true" name="SpringSource Cloud Foundry v1.0" runtime-id="SpringSource Cloud Foundry (Runtime) v1.0" server-type="com.springsource.cloudfoundryserver.10" server-type-id="com.springsource.cloudfoundryserver.10" start-timeout="600" stop-timeout="60" timestamp="0"/>
+</servers>

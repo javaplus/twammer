@@ -1,0 +1,15 @@
+package me.twammer.domain
+
+class Twam {
+	
+	String message
+	String time
+	String fromWho
+	
+
+    static constraints = {
+		message(nullable:false)
+		time(nullable:false)
+		fromWho(nullable:false)
+    }
+}

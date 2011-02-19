@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="1" key="com.springsource.sts.grails.ui.dialogsettings.sortColumn"/>
+	<item value="140" key="com.springsource.sts.grails.ui.dialogsettings.columnWidth0"/>
+	<item value="280" key="com.springsource.sts.grails.ui.dialogsettings.columnWidth1"/>
+	<section name="com.springsource.sts.grails.ui.internal.inplace.GrailsInplaceDialog">
+		<item value="325" key="size.width"/>
+		<item value="69" key="size.height"/>
+		<item value="1595" key="location.x"/>
+		<item value="404" key="location.y"/>
+	</section>
+</section>

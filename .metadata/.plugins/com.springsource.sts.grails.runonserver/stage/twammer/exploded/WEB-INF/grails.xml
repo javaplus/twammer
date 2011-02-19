@@ -1,0 +1,33 @@
+<grails>
+  <resources>
+    <resource>DefaultSecurityConfig</resource>
+    <resource>org.grails.plugins.springsecurity.controller.AuthBase</resource>
+    <resource>org.grails.plugins.springsecurity.service.AuthenticateService</resource>
+    <resource>org.grails.plugins.springsecurity.taglib.AuthorizeTagLib</resource>
+    <resource>BootStrap</resource>
+    <resource>BuildConfig</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>SecurityConfig</resource>
+    <resource>resources</resource>
+    <resource>UrlMappings</resource>
+    <resource>LoginController</resource>
+    <resource>LogoutController</resource>
+    <resource>me.twammer.domain.ConversationController</resource>
+    <resource>me.twammer.domain.TwamController</resource>
+    <resource>me.twammer.domain.UserController</resource>
+    <resource>me.twammer.ui.ImageController</resource>
+    <resource>me.twammer.domain.Category</resource>
+    <resource>me.twammer.domain.Conversation</resource>
+    <resource>me.twammer.domain.DummyUser</resource>
+    <resource>me.twammer.domain.Profile</resource>
+    <resource>me.twammer.domain.RequestMap</resource>
+    <resource>me.twammer.domain.Role</resource>
+    <resource>me.twammer.domain.Twam</resource>
+    <resource>me.twammer.domain.User</resource>
+  </resources>
+  <plugins>
+    <plugin>AcegiGrailsPlugin</plugin>
+    <plugin>HibernateGrailsPlugin</plugin>
+  </plugins>
+</grails>

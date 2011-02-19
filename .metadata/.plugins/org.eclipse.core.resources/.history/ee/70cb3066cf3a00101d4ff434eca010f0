@@ -1,0 +1,11 @@
+package me.twammer.ui
+
+class PhotoUploadCommand {
+	byte[] photo
+	String twamid
+	}
+
+class ImageController {
+
+    def index = { }
+}

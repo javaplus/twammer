@@ -1,0 +1,10 @@
+security {
+
+	// see DefaultSecurityConfig.groovy for all settable/overridable properties
+
+	active = true
+
+	loginUserDomainClass = "me.twammer.domain.User"
+	authorityDomainClass = "me.twammer.domain.Role"
+	requestMapClass = "me.twammer.domain.RequestMap"
+}

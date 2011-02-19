@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="0" name="ConversationIntegrationTests" package="me.twammer.domain" tests="1" time="0.969" timestamp="2011-02-16T02:47:40">
+      <properties />
+
+      <testcase classname="me.twammer.domain.ConversationIntegrationTests" name="testConversationSave" time="0.938" />
+
+      <system-out><![CDATA[--Output from testConversationSave--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testConversationSave--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="1" name="TwamIntegrationTests" package="me.twammer.domain" tests="2" time="0.438" timestamp="2011-02-16T02:47:41">
+      <properties />
+
+      <testcase classname="me.twammer.domain.TwamIntegrationTests" name="testTwamBasicSave" time="0.406" />
+
+      <testcase classname="me.twammer.domain.TwamIntegrationTests" name="testTwamBasicNoUserSave" time="0.032" />
+
+      <system-out><![CDATA[--Output from testTwamBasicSave--
+Twam user:me.twammer.domain.User : 2
+found twam = message:My First Twam fromWho:JimBob shownDatePosted:1 min ago
+--Output from testTwamBasicNoUserSave--
+error:Property [{0}] of class [{1}] cannot be null
+error:Property [{0}] of class [{1}] cannot be null
+error:Property [{0}] of class [{1}] cannot be null
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testTwamBasicSave--
+--Output from testTwamBasicNoUserSave--
+]]></system-err>
+
+  </testsuite>
+</testsuites>

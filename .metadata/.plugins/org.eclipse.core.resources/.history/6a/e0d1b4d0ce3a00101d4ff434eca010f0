@@ -1,0 +1,125 @@
+package me.twammer.domain
+
+class TwamController {
+
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    def index = {
+        redirect(action: "list", params: params)
+    }
+
+    def list = {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        [twamInstanceList: Twam.list(params), twamInstanceTotal: Twam.count()]
+    }
+
+    def create = {
+        def twamInstance = new Twam()
+        twamInstance.properties = params
+        return [twamInstance: twamInstance]
+    }
+
+    def save = {
+        def twamInstance = new Twam(params)
+		// get User object and set the twam on it before saving the TWAM
+		// have to do this because of this:http://jira.codehaus.org/browse/GRAILS-2986
+		def user = User.get(params["user.id"])
+		println("user found=" + user)
+		user.addToTwams(twamInstance)
+		if(user.hasErrors()){
+			println user.errors.each{println it}
+		}
+        if (twamInstance.save(flush: true)) {
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'twam.label', default: 'Twam'), twamInstance.id])}"
+            redirect(action: "show", id: twamInstance.id)
+        }
+        else {
+            render(view: "create", model: [twamInstance: twamInstance])
+        }
+    }
+
+    def show = {
+        def twamInstance = Twam.get(params.id)
+        if (!twamInstance) {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+            redirect(action: "list")
+        }
+        else {
+            [twamInstance: twamInstance]
+        }
+    }
+
+    def edit = {
+        def twamInstance = Twam.get(params.id)
+        if (!twamInstance) {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+            redirect(action: "list")
+        }
+        else {
+            return [twamInstance: twamInstance]
+        }
+    }
+
+    def update = {
+        def twamInstance = Twam.get(params.id)
+        if (twamInstance) {
+            if (params.version) {
+                def version = params.version.toLong()
+                if (twamInstance.version > version) {
+                    
+                    twamInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'twam.label', default: 'Twam')] as Object[], "Another user has updated this Twam while you were editing")
+                    render(view: "edit", model: [twamInstance: twamInstance])
+                    return
+                }
+            }
+            twamInstance.properties = params
+            if (!twamInstance.hasErrors() && twamInstance.save(flush: true)) {
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'twam.label', default: 'Twam'), twamInstance.id])}"
+                redirect(action: "show", id: twamInstance.id)
+            }
+            else {
+                render(view: "edit", model: [twamInstance: twamInstance])
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+            redirect(action: "list")
+        }
+    }
+
+    def delete = {
+        def twamInstance = Twam.get(params.id)
+        if (twamInstance) {
+            try {
+                twamInstance.delete(flush: true)
+                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+                redirect(action: "list")
+            }
+            catch (org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+                redirect(action: "show", id: params.id)
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+            redirect(action: "list")
+        }
+    }
+	
+	// get list of twams for a user: 
+	def results = {
+		def twams = null
+		def user = User.findByUserNameIlike(params.userName)
+		if(user){
+			twams = Twam.findAllByUser(user)
+		}
+		return [twams:twams,name:params.userName]
+		
+		
+		}
+	// passes through to search.gsp
+	def search = {
+		
+	}
+	
+}
