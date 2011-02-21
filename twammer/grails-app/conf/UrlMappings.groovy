@@ -12,5 +12,6 @@ class UrlMappings {
 		
 		"/login/$action?"(controller: "login")
 		"/logout/$action?"(controller: "logout")
+		"/twams/search/$username?"(controller:"twam", action:"searchByUser")
 	}
 }

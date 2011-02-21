@@ -1,8 +1,8 @@
 package me.twammer.domain
 
 import grails.plugins.springsecurity.Secured;
-
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import grails.converters.*;
 
 class TwamController {
 	
@@ -156,5 +156,31 @@ class TwamController {
 	def search = {
 		
 	}
+	
+	// get list of twams for a user:
+	def searchByUser= {
+		def twams = null
+		def user = User.findByUsernameIlike(params.username)
+		if(user){
+			twams = Twam.findAllByUser(user)
+		}
+		if(!twams){
+			println("No TWAMS Found!")
+			flash.message = 'twam.not.found.by.user.message'
+			flash.args = [params.username]
+			flash.defaultMessage = 'No Twams found!'
+		}
+		def converter = twams as JSON
+		
+		def jsonString = converter.toString()
+		println("JSON list= " + jsonString)
+		
+		converter = twams[0] as JSON		
+		
+		println("JSON = " + converter.toString())
+		render jsonString
+		
+		
+		}
 	
 }
