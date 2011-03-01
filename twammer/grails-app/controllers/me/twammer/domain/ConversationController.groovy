@@ -28,8 +28,8 @@ class ConversationController {
         def conversationInstance = new me.twammer.domain.Conversation(params)
 		// get User object and set the twam on it before saving the TWAM
 		// have to do this because of this:http://jira.codehaus.org/browse/GRAILS-2986
-		def user = User.get(params["user.id"])
-		// verify user is the owner
+		def user = springSecurityService.getCurrentUser()
+		
 		println("user found=" + user)
 		user.addToConversations(conversationInstance)
 		if(user.hasErrors()){

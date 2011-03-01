@@ -24,8 +24,7 @@
    </div>
    <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
+			<span class="menuButton"><g:link class="create" controller="conversation" action="create">Create Conversation</g:link></span>            
         </div>
    <div id="bd" role="main">
 		<div class="yui-ge">
@@ -33,7 +32,13 @@
 				<g:layoutBody />
 	    	</div>
     		<div class="yui-u">
-				<!-- YOUR DATA GOES HERE -->
+				<sec:ifNotLoggedIn>
+					<g:include controller='login' action='auth'/>
+				</sec:ifNotLoggedIn>
+				<sec:ifLoggedIn>
+					Welcome Back <sec:loggedInUserInfo field="username"/><br> 
+					<g:link controller="logout" >logout</g:link>
+				</sec:ifLoggedIn>
 	    	</div>
 		</div>
 

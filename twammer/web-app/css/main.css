@@ -31,9 +31,9 @@ body {
 }
 
 a:link, a:visited, a:hover {
-    color: #666;
-    font-weight: bold;
-    text-decoration: none;
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: inherit;
 }
 
 h1 {
@@ -329,3 +329,9 @@ img.avatar_tiny {
 .conversation-text{
 	font-size:2em;
 }
+
+.twam-delete{
+	color: red;
+	text-decoration: underline;
+}
+

@@ -9,10 +9,7 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-        </div>
+        
         <div class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -33,16 +30,7 @@
                                     <label for="title"><g:message code="conversation.title.label" default="Title" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: conversationInstance, field: 'title', 'errors')}">
-                                    <g:textField name="title" value="${conversationInstance?.title}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="user"><g:message code="conversation.user.label" default="User" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: conversationInstance, field: 'user', 'errors')}">
-                                    <g:select name="user.id" from="${me.twammer.domain.User.list()}" optionKey="id" value="${conversationInstance?.user?.id}"  />
+                                    <g:textField size="40" name="title" value="${conversationInstance?.title}" />
                                 </td>
                             </tr>
                         
