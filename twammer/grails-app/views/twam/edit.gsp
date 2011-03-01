@@ -67,14 +67,6 @@
                                 </td>
                             </tr>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="user"><g:message code="twam.user.label" default="User" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: twamInstance, field: 'user', 'errors')}">
-                                    <g:select name="user.id" from="${me.twammer.domain.User.list()}" optionKey="id" value="${twamInstance?.user?.id}"  />
-                                </td>
-                            </tr>
                         
                         </tbody>
                     </table>

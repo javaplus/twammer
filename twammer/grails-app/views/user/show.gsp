@@ -55,7 +55,7 @@
                             
                             <td valign="top" style="text-align: left;" class="value">
                                 <ul>
-                                <g:each in="${userInstance.twams}" var="t">
+                                <g:each in="${userInstance.twamlist}" var="t">
                                     <li><g:link controller="twam" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>

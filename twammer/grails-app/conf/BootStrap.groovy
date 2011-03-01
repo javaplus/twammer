@@ -1,6 +1,7 @@
-import grails.converters.JSON
 import me.twammer.domain.Twam
 import me.twammer.security.SecRole
+import grails.converters.JSON
+
 
 class BootStrap {
 
@@ -17,6 +18,7 @@ class BootStrap {
 		
 		def userRole = SecRole.findByAuthority('ROLE_USER') ?: new SecRole(authority: 'ROLE_USER').save(failOnError: true)
 		def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?: new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
+		
     }
     def destroy = {
     }

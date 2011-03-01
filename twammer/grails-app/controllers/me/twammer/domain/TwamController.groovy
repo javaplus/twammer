@@ -6,7 +6,9 @@ import grails.converters.*;
 
 class TwamController {
 	
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	def springSecurityService
+	
+    static allowedMethods = [save: "POST", update: "POST", delete: "GET"]
 
     def index = {
         redirect(action: "list", params: params)
@@ -21,8 +23,25 @@ class TwamController {
     def create = {
         def twamInstance = new Twam()
         twamInstance.properties = params
+		// check if we have a Conversation id.
+		if(params.id){
+			def conversation = Conversation.get(params.id)
+			return [twamInstance: twamInstance, conversation:conversation]
+		}
         return [twamInstance: twamInstance]
     }
+	
+	@Secured(['ROLE_USER'])
+	def create_ajax = {
+		def twamInstance = new Twam()
+		twamInstance.properties = params
+		// check if we have a Conversation id.
+		if(params.id){
+			def conversation = Conversation.get(params.id)
+			return [twamInstance: twamInstance, conversation:conversation]
+		}
+		return [twamInstance: twamInstance]
+	}
 	
 	@Secured(['ROLE_USER'])
     def save = {
@@ -31,14 +50,8 @@ class TwamController {
 			println("This is a Multipart Request!")
 		}
         def twamInstance = new Twam(params)
-		// get User object and set the twam on it before saving the TWAM
-		// have to do this because of this:http://jira.codehaus.org/browse/GRAILS-2986
-		def user = User.get(params["user.id"])
-		println("user found=" + user)
-		user.addToTwams(twamInstance)
-		if(user.hasErrors()){
-			println user.errors.each{println it}
-		}
+		// set date
+		twamInstance.actualDatePosted = new Date()
 		// get image:
 		// Get the avatar file from the multi-part request 
 		def f = request.getFile('avatar')
@@ -55,13 +68,43 @@ class TwamController {
 		twamInstance.avatarType = f.getContentType()
 		log.info("File uploaded: " + twamInstance.avatarType)
 		
+		// add this twam to a conversation if we have a conversation id.
+		def conversation = null;
+		if(params.conversation_id){
+			conversation = Conversation.get(params.conversation_id)
+			println("Saving Twam to conversation with id ${params.conversation_id}")
+			
+			conversation.addToTwams(twamInstance)
+		}
+		
+		// get User object and set the twam on it before saving the TWAM
+		// have to do this because of this:http://jira.codehaus.org/browse/GRAILS-2986
+		def user = springSecurityService.currentUser
+		println("User with id=${user.id}")
+		user = User.get(user.id)
+		println("user found=" + user)
+		user.addToTwamlist(twamInstance)
+		if(params.conversation_id){
+			if(conversation.save(flush: true)){
+				println("conversation save with twam success!!")
+			}
+		}
+		if(user.hasErrors()){
+			println user.errors.each{println it}
+		}else{
+			user.save(flush:true)
+		}
         if (twamInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'twam.label', default: 'Twam'), twamInstance.id])}"
-            redirect(action: "show", id: twamInstance.id)
+			
+        	flash.message = "${message(code: 'twam.created.conversation.message', args: [message(code: 'twam.label', default: 'Twam')])}"
+			redirect(uri:"/conversation/show/${conversation.id}")
+		
         }
         else {
             render(view: "create", model: [twamInstance: twamInstance])
         }
+		
+		
     }
 
     def show = {
@@ -117,17 +160,33 @@ class TwamController {
 
 	@Secured(['ROLE_USER'])
     def delete = {
+		println("in delete for id=${params.id}")
         def twamInstance = Twam.get(params.id)
-        if (twamInstance) {
-            try {
-                twamInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
-                redirect(action: "list")
-            }
-            catch (org.springframework.dao.DataIntegrityViolationException e) {
+		def currentUser = springSecurityService.getCurrentUser()
+		if (twamInstance) {
+			println("We do have a twam")
+			// validate that the current user is the user that owns this twam
+			if(currentUser.id != twamInstance.user.id){
+				// cannot delete someone elses twam
+				println("User deleting does NOT own twam!")
+				flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+			}else{
+				// if there's a conversation that this twam is tied to... remove it first.
+				def conversation = twamInstance.conversation
+				if(conversation){
+					println("We have a conversation!")
+				}
+				conversation.removeFromTwams(twamInstance).save()
+				try {
+                	twamInstance.delete(flush: true)
+                	flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
+                	redirect(action: "list")
+            	}
+            	catch (org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
                 redirect(action: "show", id: params.id)
-            }
+            	}
+			}
         }
         else {
             flash.message = "'default.not.found.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
@@ -182,5 +241,23 @@ class TwamController {
 		
 		
 		}
+	// get twams for a conversation
+	def conversation={
+		println "in conversation on TwamController for id=${params.id}"
+		def conversation = Conversation.get(params.id)
+		
+		[conversation:conversation]
+		
+		}
+	
+	def userIsOwner(Conversation conversation){
+		currentUser = springSecurityService.getCurrentUser()
+		owner = conversation.user
+		if(owner.id == currentUser.id){
+			return true
+		}else{
+			return false
+		}
+	}
 	
 }

@@ -33,15 +33,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="twams"><g:message code="conversation.twams.label" default="Twams" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: conversationInstance, field: 'twams', 'errors')}">
-                                    <g:select name="twams" from="${me.twammer.domain.Twam.list()}" multiple="yes" optionKey="id" size="5" value="${conversationInstance?.twams*.id}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                   <label for="title"><g:message code="conversation.title.label" default="Title" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: conversationInstance, field: 'title', 'errors')}">

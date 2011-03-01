@@ -23,6 +23,29 @@
                 <g:renderErrors bean="${twamInstance}" as="list" />
             </div>
             </g:hasErrors>
+            <g:if test="${conversation}">
+	            <div class="conversation-row" >
+					<div class="conversation-text">
+						${conversation.title}
+					</div>
+					<g:if test="${conversation.twams}">
+						<g:each var="twamInstance" in="${conversation.twams}">
+		
+							<div class="twam-row" >
+								<div class="twam-image">
+									<g:if test="${twamInstance.avatar}">
+  										<img class="avatar" src="${createLink(controller:'image', action:'avatar_image', id:twamInstance.ident())}" />
+									</g:if>
+								</div>
+								<div class="twam-text">
+									<div class="twam-fromwho">${twamInstance.fromWho}</div>
+									<div class="twam-message">${twamInstance.message}</div>
+								</div>
+							</div>
+						</g:each>
+					</g:if>	
+				</div>
+            </g:if>
             <g:form action="save" enctype="multipart/form-data">
                 <div class="dialog">
                     <table>
@@ -66,14 +89,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="user"><g:message code="twam.user.label" default="User" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: twamInstance, field: 'user', 'errors')}">
-                                    <g:select name="user.id" from="${me.twammer.domain.User.list()}" optionKey="id" value="${twamInstance?.user?.id}"  />
-                                </td>
-                            </tr>
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="user"><g:message code="twam.avatar.label" default="Avatar" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: twamInstance, field: 'avatar', 'errors')}">
@@ -84,7 +99,9 @@
     								</div>
                                 </td>
                             </tr>
-                                
+                            <g:if test="${conversation}">
+                        		<g:hiddenField name="conversation_id" value="${conversation.id}" />
+                        	</g:if>
                         
                         </tbody>
                     </table>

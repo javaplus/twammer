@@ -11,11 +11,15 @@ class Conversation {
 	// conversation has a list of twams
 	List<Twam> twams 
 	String title
-
+	User user
+	
 	static hasMany = [twams:Twam]
-	static belongsTo = [user:User]
 	
     static constraints = {
-		twams()
+		twams(nullable:true)
     }
+	static mapping = {
+		user lazy:true // don't load user with each twam.
+		twams lazy:false
+	}
 }

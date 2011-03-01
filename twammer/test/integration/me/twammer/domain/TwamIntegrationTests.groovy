@@ -33,7 +33,7 @@ class TwamIntegrationTests extends GroovyTestCase {
 		
 		// try to retrieve it.
 		def foundUser = User.get(user.id);
-		def foundTwam = foundUser.twams[0] // get first twam
+		def foundTwam = foundUser.twamlist[0] // get first twam
 		System.out.println("found twam = " + foundTwam.toString());
 		assertEquals 'JimBob',foundTwam.fromWho
 	}

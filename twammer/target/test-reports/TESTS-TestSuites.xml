@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="NW917514" id="0" name="ConversationIntegrationTests" package="me.twammer.domain" tests="1" time="0.969" timestamp="2011-02-16T02:47:40">
+  <testsuite errors="0" failures="1" hostname="NW917514" id="0" name="ConversationIntegrationTests" package="me.twammer.domain" tests="1" time="0.719" timestamp="2011-02-26T01:15:54">
       <properties />
 
-      <testcase classname="me.twammer.domain.ConversationIntegrationTests" name="testConversationSave" time="0.938" />
+      <testcase classname="me.twammer.domain.ConversationIntegrationTests" name="testConversationSave" time="0.719">
+          <failure message="junit.framework.AssertionFailedError: null" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: null
+	at me.twammer.domain.ConversationIntegrationTests.testConversationSave(ConversationIntegrationTests.groovy:18)
+</failure>
+
+      </testcase>
 
       <system-out><![CDATA[--Output from testConversationSave--
 ]]></system-out>
@@ -12,24 +17,134 @@
 ]]></system-err>
 
   </testsuite>
-  <testsuite errors="0" failures="0" hostname="NW917514" id="1" name="TwamIntegrationTests" package="me.twammer.domain" tests="2" time="0.438" timestamp="2011-02-16T02:47:41">
+  <testsuite errors="0" failures="1" hostname="NW917514" id="1" name="TwamIntegrationTests" package="me.twammer.domain" tests="2" time="0.156" timestamp="2011-02-26T01:15:54">
       <properties />
 
-      <testcase classname="me.twammer.domain.TwamIntegrationTests" name="testTwamBasicSave" time="0.406" />
+      <testcase classname="me.twammer.domain.TwamIntegrationTests" name="testTwamBasicSave" time="0.047">
+          <failure message="junit.framework.AssertionFailedError: null" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: null
+	at me.twammer.domain.TwamIntegrationTests.testTwamBasicSave(TwamIntegrationTests.groovy:24)
+</failure>
 
-      <testcase classname="me.twammer.domain.TwamIntegrationTests" name="testTwamBasicNoUserSave" time="0.032" />
+      </testcase>
+
+      <testcase classname="me.twammer.domain.TwamIntegrationTests" name="testTwamBasicNoUserSave" time="0.109" />
 
       <system-out><![CDATA[--Output from testTwamBasicSave--
-Twam user:me.twammer.domain.User : 2
-found twam = message:My First Twam fromWho:JimBob shownDatePosted:1 min ago
 --Output from testTwamBasicNoUserSave--
-error:Property [{0}] of class [{1}] cannot be null
 error:Property [{0}] of class [{1}] cannot be null
 error:Property [{0}] of class [{1}] cannot be null
 ]]></system-out>
 
       <system-err><![CDATA[--Output from testTwamBasicSave--
 --Output from testTwamBasicNoUserSave--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="2" name="CategoryTests" package="me.twammer.domain" tests="1" time="0.656" timestamp="2011-02-26T01:15:19">
+      <properties />
+
+      <testcase classname="me.twammer.domain.CategoryTests" name="testSomething" time="0.593" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="3" name="ConversationControllerTests" package="me.twammer.domain" tests="1" time="1.828" timestamp="2011-02-26T01:15:20">
+      <properties />
+
+      <testcase classname="me.twammer.domain.ConversationControllerTests" name="testSomething" time="1.812" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="4" name="ConversationTests" package="me.twammer.domain" tests="1" time="0.0" timestamp="2011-02-26T01:15:22">
+      <properties />
+
+      <testcase classname="me.twammer.domain.ConversationTests" name="testSomething" time="0.0" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="5" name="ProfileTests" package="me.twammer.domain" tests="1" time="0.015" timestamp="2011-02-26T01:15:22">
+      <properties />
+
+      <testcase classname="me.twammer.domain.ProfileTests" name="testSomething" time="0.0" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="6" name="TwamControllerTests" package="me.twammer.domain" tests="1" time="0.219" timestamp="2011-02-26T01:15:22">
+      <properties />
+
+      <testcase classname="me.twammer.domain.TwamControllerTests" name="testSomething" time="0.219" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="7" name="TwamTests" package="me.twammer.domain" tests="1" time="0.016" timestamp="2011-02-26T01:15:22">
+      <properties />
+
+      <testcase classname="me.twammer.domain.TwamTests" name="testSomething" time="0.016" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="8" name="UserControllerTests" package="me.twammer.domain" tests="1" time="0.156" timestamp="2011-02-26T01:15:22">
+      <properties />
+
+      <testcase classname="me.twammer.domain.UserControllerTests" name="testSomething" time="0.14" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="9" name="UserTests" package="me.twammer.domain" tests="1" time="0.016" timestamp="2011-02-26T01:15:22">
+      <properties />
+
+      <testcase classname="me.twammer.domain.UserTests" name="testSomething" time="0.016" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="NW917514" id="10" name="ImageControllerTests" package="me.twammer.ui" tests="1" time="0.047" timestamp="2011-02-26T01:15:22">
+      <properties />
+
+      <testcase classname="me.twammer.ui.ImageControllerTests" name="testSomething" time="0.047" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
 ]]></system-err>
 
   </testsuite>

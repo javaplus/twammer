@@ -8,17 +8,22 @@ class Twam {
 	Date actualDatePosted
 	byte[] avatar // the avatar for this twam
 	String avatarType
+	Conversation conversation
+	User user
 	
 
-    static constraints = {
+		
+	static constraints = {
 		message(maxSize:256,nullable:false)
 		shownDatePosted(nullable:false)
 		fromWho(nullable:false)
 		avatar(nullable:true, maxSize: 16384 /* 16K */)
 		avatarType(nullable:true)
+		conversation(nullable:true)
+		
 	}
 	
-	static belongsTo = [user:User]
+	
 	
 	static mapping = {
 		user lazy:true // don't load user with each twam.

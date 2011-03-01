@@ -16,10 +16,18 @@ body {
     color: #999;
     font: 11px verdana, arial, helvetica, sans-serif;
 }
+#TwammerText {
+	padding:20px;
+	font: 45px arial;
+	text-align: left;
+	float: left
+}
+
 #TwammerLogo {
 	padding:20px;
 	font: 45px arial;
 	text-align: left;
+	float: left
 }
 
 a:link, a:visited, a:hover {
@@ -290,6 +298,9 @@ img.avatar_tiny {
 
 .twam-row{
 	height: 10em;
+	padding-left: 10px;
+	border: white 1px solid;
+	background-color: rgb(99,99,99); 
 }
 
 
@@ -298,6 +309,8 @@ img.avatar_tiny {
 }
 
 .twam-text{
+	color: #000;
+	font: 11px sans serif,arial;
 	
 }
 
@@ -305,5 +318,14 @@ img.avatar_tiny {
 	font-size:1em;
 }
 .twam-message{
+	font-size:2em;
+}
+.conversation-row{
+	border: gray 2px solid;
+	font-size:1em;
+	padding-bottom: 6px;
+	padding-top: 6px;
+}
+.conversation-text{
 	font-size:2em;
 }

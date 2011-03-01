@@ -11,11 +11,11 @@ import me.twammer.security.SecUser;
 class User extends SecUser{
 	
 	String email
-	List<Twam> twams
+	List<Twam> twamlist
 	List<Conversation> conversations
 	
 	// has many twams
-	static hasMany = [twams: Twam, conversations:Conversation]
+	static hasMany = [twamlist: Twam, conversations:Conversation]
 
 
     static constraints = {
@@ -26,8 +26,8 @@ class User extends SecUser{
             })
 		password(nullable:false)
 		email(email:true)
-		twams()
-		conversations()
+		twamlist(nullable:true)
+		conversations(nullable:true)
     }
 	
 	String toString(){
