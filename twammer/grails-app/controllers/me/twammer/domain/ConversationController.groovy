@@ -1,5 +1,6 @@
 package me.twammer.domain
 
+import grails.converters.JSON;
 import grails.plugins.springsecurity.Secured;
 
 class ConversationController {
@@ -166,6 +167,38 @@ class ConversationController {
 		}else{
 			return false
 		}		
-	}	
+	}
+	
+	def visualize = {
+		def conversation = Conversation.get(params.id)
+		if(conversation){
+			println("conversation = ${conversation.title}")
+		}else{
+			println("No convo found for id:${params.id}")
+		}
+		render(template:'visualize',model:['conversation':conversation])				
+	} 	
+	
+	def getLatestTwam = {
+		def conversation = Conversation.get(params.id)
+		def twams = conversation.twams
+		
+		if(twams){
+			def converter = twams[twams.size()-1] as JSON
+			
+			def jsonString = converter.toString()
+			println("JSON list= " + jsonString)
+			// latest twam will be the last one in the list
+			println("last twam: ${twams[twams.size()-1]}")
+			
+			println("JSON = " + converter.toString())
+			render jsonString
+			
+			
+			
+		}
+		
+		
+	}
 	
 }

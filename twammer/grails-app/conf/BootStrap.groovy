@@ -1,3 +1,5 @@
+import org.codehaus.groovy.grails.commons.ApplicationHolder;
+
 import me.twammer.domain.Twam
 import me.twammer.security.SecRole
 import grails.converters.JSON
@@ -6,11 +8,12 @@ import grails.converters.JSON
 class BootStrap {
 
     def init = { servletContext ->
+
 		
 		JSON.registerObjectMarshaller(Twam) {
 			def returnArray = [:]
 			returnArray['text'] = it.message
-			returnArray['image'] = "image/avatar_image/${it.id}"
+			returnArray['image'] = "/image/avatar_image/${it.id}"
 			returnArray['user'] = it.fromWho
 			returnArray['time'] = it.shownDatePosted
 			return returnArray

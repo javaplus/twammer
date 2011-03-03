@@ -23,6 +23,9 @@ ${conversationInstanceTotal}
 			<div class="conversation-text">
 				<g:link controller="conversation" action="show" id="${conversation.id}">${conversation.title}</g:link>
 			</div>
+			<div class="conversation-visualize">
+				<g:link controller="conversation" action="visualize" id="${conversation.id}">Visualize</g:link>
+			</div>
 			<div id="conversation_twam${conversation.id}"><g:if test="${conversation.twams}">
 				<g:remoteLink controller="twam" action="conversation" id="${conversation.id}" update="conversation_twam${conversation.id}">Show Twams</g:remoteLink>
 			</g:if>	
