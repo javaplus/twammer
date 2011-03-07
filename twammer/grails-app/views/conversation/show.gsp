@@ -24,7 +24,9 @@
 						</g:if>	
 					</div>
 					<div id="conversation_twam_create${conversation.id}">
-					<g:remoteLink controller="twam" action="create_ajax" id="${conversation.id}" update="conversation_twam_create${conversation.id}">Add Twams</g:remoteLink>
+					<sec:ifLoggedIn>
+						<g:remoteLink controller="twam" action="create_ajax" id="${conversation.id}" update="conversation_twam_create${conversation.id}">Add Twams</g:remoteLink>
+					</sec:ifLoggedIn>
 					</div>
 				</div>	
         

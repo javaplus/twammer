@@ -24,7 +24,9 @@
    </div>
    <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-			<span class="menuButton"><g:link class="create" controller="conversation" action="create">Create Conversation</g:link></span>            
+			<sec:ifLoggedIn>
+				<span class="menuButton"><g:link class="create" controller="conversation" action="create">Create Conversation</g:link></span>
+			</sec:ifLoggedIn>            
         </div>
    <div id="bd" role="main">
 		<div class="yui-ge">

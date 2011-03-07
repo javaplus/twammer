@@ -67,10 +67,15 @@ log4j = {
     // Example of changing the log pattern for the default console
     // appender:
     //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    appenders {
+        rollingFile name:"file", maxFileSize:1024, file:"/var/logs/twammer.log",layout:pattern(conversionPattern: '%c{2} %m%n')
+		rollingFile name:"stacktrace", maxFileSize:1024, file:"/var/logs/stacktrace.log"
+    }
 
+	root{
+		warn 'file'
+		additivity = true
+	}
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
            'org.codehaus.groovy.grails.web.pages', //  GSP
            'org.codehaus.groovy.grails.web.sitemesh', //  layouts
@@ -84,6 +89,7 @@ log4j = {
            'net.sf.ehcache.hibernate'
 
     warn   'org.mortbay.log'
+	
 }
 
 
