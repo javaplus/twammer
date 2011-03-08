@@ -21,8 +21,9 @@ class UserController {
 
     def create = {
         def userInstance = new User()
-        userInstance.properties = params
-        return [userInstance: userInstance]
+        userInstance.profile = new Profile()
+		userInstance.properties = params
+		return [userInstance: userInstance]
     }
 
     def save = {
