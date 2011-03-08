@@ -13,6 +13,7 @@ class User extends SecUser{
 	String email
 	List<Twam> twamlist
 	List<Conversation> conversations
+	Profile profile
 	
 	// has many twams
 	static hasMany = [twamlist: Twam, conversations:Conversation]

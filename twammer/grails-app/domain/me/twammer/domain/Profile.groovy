@@ -4,10 +4,12 @@ class Profile {
 	
 	String fullName
 	String website
+	String bio
 	byte[] photo
 	
-	static belongsTo = []
+	static belongsTo = User
 	
     static constraints = {
+		website(url:true)
     }
 }

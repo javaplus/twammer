@@ -31,10 +31,10 @@ class ConversationController {
 		// have to do this because of this:http://jira.codehaus.org/browse/GRAILS-2986
 		def user = springSecurityService.getCurrentUser()
 		
-		println("user found=" + user)
+		log.debug("user found=" + user)
 		user.addToConversations(conversationInstance)
 		if(user.hasErrors()){
-			println user.errors.each{println it}
+			user.errors.each{log.debug it}
 		}
         if (conversationInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'conversation.label', default: 'Conversation'), conversationInstance.id])}"
@@ -139,9 +139,9 @@ class ConversationController {
 		if(user){
 			conversations = Conversation.findAllByUser(user)
 			if(conversations){
-				println("found ${conversations.size()} converstaions");
+				log.debug("found ${conversations.size()} converstaions");
 				for (twam in conversations.twams) {
-					println "twam id = ${twam.id}"
+					log.debug "twam id = ${twam.id}"
 				}
 				//conversations[0].twams.each{arg -> println arg.id}
 			}
@@ -172,9 +172,9 @@ class ConversationController {
 	def visualize = {
 		def conversation = Conversation.get(params.id)
 		if(conversation){
-			println("conversation = ${conversation.title}")
+			log.debug("conversation = ${conversation.title}")
 		}else{
-			println("No convo found for id:${params.id}")
+			log.debug("No convo found for id:${params.id}")
 		}
 		render(template:'visualize',model:['conversation':conversation])				
 	} 	
@@ -187,11 +187,11 @@ class ConversationController {
 			def converter = twams[twams.size()-1] as JSON
 			
 			def jsonString = converter.toString()
-			println("JSON list= " + jsonString)
+			log.debug("JSON list= " + jsonString)
 			// latest twam will be the last one in the list
-			println("last twam: ${twams[twams.size()-1]}")
+			log.debug("last twam: ${twams[twams.size()-1]}")
 			
-			println("JSON = " + converter.toString())
+			log.debug("JSON = " + converter.toString())
 			render jsonString
 			
 			

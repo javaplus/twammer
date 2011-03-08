@@ -10,7 +10,7 @@ class PhotoUploadCommand {
 class ImageController {
 
 	def avatar_image = {
-		println "in avatar_image id=${params.id}"
+		log.debug "in avatar_image id=${params.id}"
 		def avatarTwam = Twam.get(params.id)
 		if (!avatarTwam || !avatarTwam.avatar || !avatarTwam.avatarType) {
 		  response.sendError(404)

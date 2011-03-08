@@ -47,7 +47,7 @@ class TwamController {
     def save = {
 		if(request instanceof MultipartHttpServletRequest)
 		{
-			println("This is a Multipart Request!")
+			log.debug("This is a Multipart Request!")
 		}
         def twamInstance = new Twam(params)
 		// set date
@@ -57,9 +57,9 @@ class TwamController {
 		def f = request.getFile('avatar')
 		// List of OK mime-types 
 		def okcontents = ['image/png', 'image/jpeg', 'image/gif', 'image/pjpeg']
-		println("content type = ${f.getContentType()}") 
+		log.debug("content type = ${f.getContentType()}") 
 		if (! okcontents.contains(f.getContentType())) {
-			println("Avatar must be one of: ${okcontents}")
+			log.debug("Avatar must be one of: ${okcontents}")
 			 flash.message = "Avatar must be one of: ${okcontents}" 
 			 // render(view:'select_avatar', model:[user:user]) 
 			 return; 
@@ -72,7 +72,7 @@ class TwamController {
 		def conversation = null;
 		if(params.conversation_id){
 			conversation = Conversation.get(params.conversation_id)
-			println("Saving Twam to conversation with id ${params.conversation_id}")
+			log.debug("Saving Twam to conversation with id ${params.conversation_id}")
 			
 			conversation.addToTwams(twamInstance)
 		}
@@ -80,17 +80,17 @@ class TwamController {
 		// get User object and set the twam on it before saving the TWAM
 		// have to do this because of this:http://jira.codehaus.org/browse/GRAILS-2986
 		def user = springSecurityService.currentUser
-		println("User with id=${user.id}")
+		log.debug("User with id=${user.id}")
 		user = User.get(user.id)
-		println("user found=" + user)
+		log.debug("user found=" + user)
 		user.addToTwamlist(twamInstance)
 		if(params.conversation_id){
 			if(conversation.save(flush: true)){
-				println("conversation save with twam success!!")
+				log.debug("conversation save with twam success!!")
 			}
 		}
 		if(user.hasErrors()){
-			println user.errors.each{println it}
+			user.errors.each{log.debug it}
 		}else{
 			user.save(flush:true)
 		}
@@ -160,21 +160,21 @@ class TwamController {
 
 	@Secured(['ROLE_USER'])
     def delete = {
-		println("in delete for id=${params.id}")
+		log.debug("in delete for id=${params.id}")
         def twamInstance = Twam.get(params.id)
 		def currentUser = springSecurityService.getCurrentUser()
 		if (twamInstance) {
-			println("We do have a twam")
+			log.debug("We do have a twam")
 			// validate that the current user is the user that owns this twam
 			if(currentUser.id != twamInstance.user.id){
 				// cannot delete someone elses twam
-				println("User deleting does NOT own twam!")
+				log.debug("User deleting does NOT own twam!")
 				flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'twam.label', default: 'Twam'), params.id])}"
 			}else{
 				// if there's a conversation that this twam is tied to... remove it first.
 				def conversation = twamInstance.conversation
 				if(conversation){
-					println("We have a conversation!")
+					log.debug("We have a conversation!")
 				}
 				conversation.removeFromTwams(twamInstance).save()
 				try {
@@ -202,7 +202,7 @@ class TwamController {
 			twams = Twam.findAllByUser(user)
 		}
 		if(!twams){
-			println("No TWAMS Found!")
+			log.debug("No TWAMS Found!")
 			flash.message = 'twam.not.found.by.user.message'
 			flash.args = [params.username]
 			flash.defaultMessage = 'No Twams found!'
@@ -224,7 +224,7 @@ class TwamController {
 			twams = Twam.findAllByUser(user)
 		}
 		if(!twams){
-			println("No TWAMS Found!")
+			log.debug("No TWAMS Found!")
 			flash.message = 'twam.not.found.by.user.message'
 			flash.args = [params.username]
 			flash.defaultMessage = 'No Twams found!'
@@ -232,18 +232,18 @@ class TwamController {
 		def converter = twams as JSON
 		
 		def jsonString = converter.toString()
-		println("JSON list= " + jsonString)
+		log.debug("JSON list= " + jsonString)
 		
 		converter = twams[0] as JSON		
 		
-		println("JSON = " + converter.toString())
+		log.debug("JSON = " + converter.toString())
 		render jsonString
 		
 		
 		}
 	// get twams for a conversation
 	def conversation={
-		println "in conversation on TwamController for id=${params.id}"
+		log.debug "in conversation on TwamController for id=${params.id}"
 		def conversation = Conversation.get(params.id)
 		
 		[conversation:conversation]
