@@ -133,7 +133,8 @@ class TwamController {
 	@Secured(['ROLE_USER'])
     def update = {
         def twamInstance = Twam.get(params.id)
-        if (twamInstance) {
+		
+		if (twamInstance) {
             if (params.version) {
                 def version = params.version.toLong()
                 if (twamInstance.version > version) {
@@ -144,6 +145,31 @@ class TwamController {
                 }
             }
             twamInstance.properties = params
+			def f = null
+			try{
+				f = request.getFile('avatar')
+			}catch(Exception e){
+				e.printStackTrace()
+			}
+			
+			if(f && f.getBytes().length>10){
+				// List of OK mime-types
+				def okcontents = ['image/png', 'image/jpeg', 'image/gif', 'image/pjpeg']
+				log.debug("content type = ${f.getContentType()}")
+				if (! okcontents.contains(f.getContentType())) {
+					log.debug("Avatar must be one of: ${okcontents}")
+					flash.message = "Avatar must be one of: ${okcontents}"
+					// render(view:'select_avatar', model:[user:user])
+					return;
+				}
+				
+				twamInstance.avatar = f.getBytes()
+				twamInstance.avatarType = f.getContentType()
+				log.info("File uploaded: " + twamInstance.avatarType)
+				
+				
+			} // end if(f)
+			
             if (!twamInstance.hasErrors() && twamInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'twam.label', default: 'Twam'), twamInstance.id])}"
                 redirect(action: "show", id: twamInstance.id)
@@ -259,5 +285,7 @@ class TwamController {
 			return false
 		}
 	}
+	
+	
 	
 }

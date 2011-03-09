@@ -107,17 +107,20 @@ class ConversationController {
         def conversationInstance = Conversation.get(params.id)
         if (conversationInstance) {
 			// verify user is the owner
-			if(!userIsOwner(conversationINstance)){
+			if(!userIsOwner(conversationInstance)){
 				// if not owner do something.
 				flash.message = "${message(code: 'default.not.owner', args: [message(code: 'conversation.label', default: 'Conversation')])}"
 				render(view: "create", model: [conversationInstance: conversationInstance])
 			}
             try {
+				//delete each twam
+				conversationInstance.twams.each{it.delete()}
                 conversationInstance.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'conversation.label', default: 'Conversation'), params.id])}"
                 redirect(action: "list")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
+				e.printStackTrace()
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'conversation.label', default: 'Conversation'), params.id])}"
                 redirect(action: "show", id: params.id)
             }
@@ -160,8 +163,8 @@ class ConversationController {
 	}
 	
 	def userIsOwner(Conversation conversation){
-		currentUser = springSecurityService.getCurrentUser()
-		owner = conversation.user
+		def currentUser = springSecurityService.getCurrentUser()
+		def owner = conversation.user
 		if(owner.id == currentUser.id){
 			return true
 		}else{

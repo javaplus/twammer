@@ -8,6 +8,7 @@ class UrlMappings {
 		}
 
 		"/"(controller:"conversation", action:"list")
+		//"/"("views/index.gsp")
 		"500"(view:'/error')
 		
 		"/login/$action?"(controller: "login")

@@ -9,11 +9,6 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-        </div>
         <div class="body">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -24,7 +19,7 @@
                 <g:renderErrors bean="${twamInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
+            <g:form method="post" enctype="multipart/form-data">
                 <g:hiddenField name="id" value="${twamInstance?.id}" />
                 <g:hiddenField name="version" value="${twamInstance?.version}" />
                 <div class="dialog">
@@ -67,7 +62,25 @@
                                 </td>
                             </tr>
                         
-                        
+                        	<tr class="prop">
+                    		<td valign="top" class="name"><g:message code="twam.avatar.label" default="Avatar" /></td>
+                    		<td><g:if test="${twamInstance.avatar}">
+  									<img class="avatar" src="${createLink(controller:'image', action:'avatar_image', id:twamInstance.ident())}" />
+								</g:if>
+							</td>
+                    		</tr>
+                        	<tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="user"><g:message code="twam.avatar.change.label" default="Change Avatar" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: twamInstance, field: 'avatar', 'errors')}">
+                        			<input name="avatar" id="avatar" type="file" />
+                                	 <div style="font-size:0.8em; margin: 1.0em;">
+      										For best results, your avatar should have a width-to-height ratio of 4:5.
+      										For example, if your image is 80 pixels wide, it should be 100 pixels high.
+    								</div>
+                            	</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
