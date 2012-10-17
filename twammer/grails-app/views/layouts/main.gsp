@@ -15,12 +15,23 @@
 <body>
 <div id="custom-doc" class="yui-t7">
    <div id="hd" role="banner"> 
-   		<div id="TwammerLogo">
-        	<a href="http://twammer.me"><img src="${resource(dir:'images',file:'twam-explode.gif')}" alt="Twammer" border="0" /></a>
-        </div>
-        <div id="TwammerText">Welcome to Twammer!</div>
-        	
-   		
+   	
+        					
+   		<div style="float:left;margin:4px">
+	   		<p><a href="http://twammer.cloudfoundry.com"><img src="${resource(dir:'images',file:'twam-explode.gif')}" alt="Twammer" border="0" /></a>
+	   		
+	    </div>
+	    <div style="float:left;margin:4px">
+	   			<br><br>
+	   			<p style="font-family:arial;color:white;font-size:46px;margin:14px">Welcome to Twammer!</p><br>
+	 			<p  style="font-family:arial;color:white;font-size:14px;" >	You know Twitter, you've heard of Yammer... <br><br><p style="font-family:arial;color:white;font-size:24px;">This is Twammer</p>
+	 			<br>
+	 			<p style="font-family:arial;color:white;font-size:14px;">Where you don't have to worry about what's true because everything is made up here!!!</p><br><br>
+	 			<p style="font-family:arial;color:white;font-size:14px;">Post anything as anyone at anytime!!! But always Post responsibly!!!</p><br>
+	 		</div>
+
+        
+   
    </div>
    <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
@@ -49,3 +60,4 @@
 </div>
 </body>
 </html>
+
