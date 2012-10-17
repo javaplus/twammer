@@ -315,7 +315,14 @@ img.avatar_tiny {
 }
 
 .twam-fromwho{
-	font-size:1em;
+	font-size:14px;
+	color:silver;
+	
+}
+
+.twam-date{
+	font-size:12px;
+	color: yellow;
 	
 }
 .twam-message{

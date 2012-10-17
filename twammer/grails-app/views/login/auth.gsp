@@ -67,7 +67,9 @@
 					<input type='submit' value='Login' />
 				</p>
 				<br>
-				<p>	<g:link controller="user" action="create" style="color:blue;float:left;">Create a FREE account!!!</g:link>
+				<p ><label style="width:100%"><g:link controller="user" action="create" style="color:blue;float:left;text-decoration:underline">Create a FREE account and get Twamming!!!</g:link></label> 
+				</p>
+				<p><br>	
 				</p>
 			</form>
 		</div>

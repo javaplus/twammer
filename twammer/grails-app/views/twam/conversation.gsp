@@ -7,7 +7,8 @@
 						</g:if>
 					</div>
 					<div class="twam-text">
-						<div class="twam-fromwho">${twamInstance.fromWho}</div>
+						<div class="twam-fromwho">  ${twamInstance.fromWho}</div>
+						<div class="twam-date">  posted(${twamInstance.shownDatePosted})</div>
 						<g:userIsOwner user="${twamInstance.user}"><div class="twam-delete"><g:link controller="twam" action="delete" id="${twamInstance.ident()}">Delete Twam</g:link></div>
 						<div class="twam-delete"><g:link controller="twam" action="edit" id="${twamInstance.ident()}">Edit Twam</g:link></div></g:userIsOwner>
 						<div class="twam-message"><g:linkify>${twamInstance.message}</g:linkify></div>

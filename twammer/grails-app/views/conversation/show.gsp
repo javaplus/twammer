@@ -23,9 +23,9 @@
 <%--							<g:link controller="twam" action="conversation" id="${conversation.id}" update="conversation_twam${conversation.id}">Show Twams</g:link>--%>
 						</g:if>	
 					</div>
-					<div id="conversation_twam_create${conversation.id}">
+					<div id="conversation_twam_create${conversation.id}" style="color:blue;font-size:16px;">
 					<sec:ifLoggedIn>
-						<g:remoteLink controller="twam" action="create_ajax" id="${conversation.id}" update="conversation_twam_create${conversation.id}">Add Twams</g:remoteLink>
+						<g:remoteLink controller="twam" action="create_ajax" id="${conversation.id}" update="conversation_twam_create${conversation.id}">Click HERE to Add to the Conversation</g:remoteLink>
 					</sec:ifLoggedIn>
 					</div>
 				</div>	

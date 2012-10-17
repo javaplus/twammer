@@ -27,7 +27,7 @@
 	 			<p  style="font-family:arial;color:white;font-size:14px;" >	You know Twitter, you've heard of Yammer... <br><br><p style="font-family:arial;color:white;font-size:24px;">This is Twammer</p>
 	 			<br>
 	 			<p style="font-family:arial;color:white;font-size:14px;">Where you don't have to worry about what's true because everything is made up here!!!</p><br><br>
-	 			<p style="font-family:arial;color:white;font-size:14px;">Post anything as anyone at anytime!!! But always Post responsibly!!!</p><br>
+	 			<p style="font-family:arial;color:white;font-size:14px;">Post anything as anyone at anytime!!! But always Twam responsibly!!!</p><br>
 	 		</div>
 
         
