@@ -68,8 +68,8 @@ log4j = {
     // appender:
     //
     appenders {
-        rollingFile name:"file", maxFileSize:1024, file:"/var/logs/twammer.log",layout:pattern(conversionPattern: '%c{2} %m%n')
-		rollingFile name:"stacktrace", maxFileSize:1024, file:"/var/logs/stacktrace.log"
+        rollingFile name:"file", maxFileSize:1024, file:"twammer.log",layout:pattern(conversionPattern: '%c{2} %m%n')
+		rollingFile name:"stacktrace", maxFileSize:1024, file:"stacktrace.log"
     }
 
 	root{

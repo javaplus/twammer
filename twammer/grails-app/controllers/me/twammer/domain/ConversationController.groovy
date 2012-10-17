@@ -173,10 +173,13 @@ class ConversationController {
 	}
 	
 	def visualize = {
+		println('Visualized called')
 		def conversation = Conversation.get(params.id)
 		if(conversation){
 			log.debug("conversation = ${conversation.title}")
+			println("conversation = ${conversation.title}")
 		}else{
+			println('no conversation found')
 			log.debug("No convo found for id:${params.id}")
 		}
 		render(template:'visualize',model:['conversation':conversation])				

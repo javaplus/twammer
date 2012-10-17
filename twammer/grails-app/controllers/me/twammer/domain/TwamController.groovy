@@ -56,10 +56,12 @@ class TwamController {
 		// Get the avatar file from the multi-part request 
 		def f = request.getFile('avatar')
 		// List of OK mime-types 
-		def okcontents = ['image/png', 'image/jpeg', 'image/gif', 'image/pjpeg']
-		log.debug("content type = ${f.getContentType()}") 
+		def okcontents = ['image/png', 'image/jpeg', 'image/gif', 'image/pjpeg','image/x-png']
+		log.debug("content type = ${f.getContentType()}")
+		println "content type = ${f.getContentType()}"
 		if (! okcontents.contains(f.getContentType())) {
 			log.debug("Avatar must be one of: ${okcontents}")
+			println "not right content type???"
 			 flash.message = "Avatar must be one of: ${okcontents}" 
 			 // render(view:'select_avatar', model:[user:user]) 
 			 return; 
@@ -75,6 +77,7 @@ class TwamController {
 			log.debug("Saving Twam to conversation with id ${params.conversation_id}")
 			
 			conversation.addToTwams(twamInstance)
+			println "adding twams"
 		}
 		
 		// get User object and set the twam on it before saving the TWAM
@@ -91,6 +94,7 @@ class TwamController {
 		}
 		if(user.hasErrors()){
 			user.errors.each{log.debug it}
+			println "user has errors"
 		}else{
 			user.save(flush:true)
 		}
@@ -101,7 +105,8 @@ class TwamController {
 		
         }
         else {
-            render(view: "create", model: [twamInstance: twamInstance])
+			println "I should go to create!"
+			render(view: "create", model: [twamInstance: twamInstance])
         }
 		
 		
