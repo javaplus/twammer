@@ -17,7 +17,7 @@ class Twam {
 		message(maxSize:256,nullable:false)
 		shownDatePosted(nullable:false)
 		fromWho(nullable:false)
-		avatar(nullable:true, maxSize: 16384 /* 16K */)
+		avatar(nullable:true, maxSize: 1000000 /* 1MB */)
 		avatarType(nullable:true)
 		conversation(nullable:true)
 		

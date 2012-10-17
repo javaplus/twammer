@@ -64,10 +64,10 @@
 					<g:if test='${hasCookie}'>checked='checked'</g:if> />
 				</p>
 				<p>
-					<g:link controller="user" action="create">Create a FREE account!!!</g:link>
-				</p>
-				<p>
 					<input type='submit' value='Login' />
+				</p>
+				<br>
+				<p>	<g:link controller="user" action="create" style="color:blue;float:left;">Create a FREE account!!!</g:link>
 				</p>
 			</form>
 		</div>
